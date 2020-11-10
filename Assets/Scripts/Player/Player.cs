@@ -52,6 +52,6 @@ public class Player : MonoBehaviour
     private void FixedUpdate()
     {
         Actions.Movement(transform);
-        Actions.CheckPlayerStatus();
+        Actions.CheckIfGrounded();
     }
 }

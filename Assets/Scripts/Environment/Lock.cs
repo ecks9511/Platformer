@@ -1,9 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Lock : MonoBehaviour
 {
+    //1 = button, 2 = key
+    public int lockType;
+    public Player player;
     public GameObject button;
     private BoxCollider2D lockCollider;
     private Renderer sprite;
@@ -11,26 +15,45 @@ public class Lock : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //If button is pressed (TODO : Make it a list of buttons)
-        if(button.GetComponent<ButtonInfo>().isPressed == true)
+        if (lockType == 1)
         {
-            //Disable box collider
-            lockCollider = this.GetComponent<BoxCollider2D>();
-            lockCollider.enabled = false;
+            //If button is pressed (TODO : Make it a list of buttons)
+            if (button.GetComponent<ButtonInfo>().isPressed == true)
+            {
+                //Disable box collider
+                lockCollider = this.GetComponent<BoxCollider2D>();
+                lockCollider.enabled = false;
 
-            //Disable graphics
-            sprite = this.GetComponent<Renderer>();
-            sprite.enabled = false;
+                //Disable graphics
+                sprite = this.GetComponent<Renderer>();
+                sprite.enabled = false;
+            }
+            else
+            {
+                //Enable box collider
+                lockCollider = this.GetComponent<BoxCollider2D>();
+                lockCollider.enabled = true;
+
+                //Enable graphics
+                sprite = this.GetComponent<Renderer>();
+                sprite.enabled = true;
+            }
         }
-        else
+        else if (lockType == 2)
         {
-            //Enable box collider
-            lockCollider = this.GetComponent<BoxCollider2D>();
-            lockCollider.enabled = true;
+            //The key was grabbed (TODO : Make it a list of keys)
+            if (player.Stats.KeyNum > 0)
+            {
+                //Disable box collider
+                lockCollider = this.GetComponent<BoxCollider2D>();
+                lockCollider.enabled = false;
 
-            //Enable graphics
-            sprite = this.GetComponent<Renderer>();
-            sprite.enabled = true;
+                //Disable graphics
+                sprite = this.GetComponent<Renderer>();
+                sprite.enabled = false;
+
+                player.Stats.KeyNum--;
+            }
         }
     }
 }

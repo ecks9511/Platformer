@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Networking;
@@ -25,12 +26,12 @@ public class PlayerActions
         //If player is on the rope, but not yet falling allow them to swing
         else if (player.Stats.FallingFromHook == false && player.Stats.OnHook == true)
         {
-
+            //TODO, swinging mechanics
         }
         else
         {
             //If falling from hook, check if grounded until you are
-            if (player.Utilities.IsGrounded())
+            if (player.Stats.IsGrounded)
             {
 
                 //Set it back to normal
@@ -44,7 +45,7 @@ public class PlayerActions
 
     public void Jump()
     {
-        if (player.Utilities.IsGrounded())
+        if (player.Stats.IsGrounded || Time.time - player.Stats.LastTimeGrounded <= player.Stats.RememberGroundedFor)
         {
 
             player.Components.RigidBody.velocity = new Vector2(player.Components.RigidBody.velocity.x, player.Stats.JumpForce);
@@ -58,7 +59,7 @@ public class PlayerActions
                 player.Components.RigidBody.velocity += Vector2.up * Physics2D.gravity * (player.Stats.LowJumpMultiplier - 1) * Time.deltaTime;
             }
         }
-        else if (player.Stats.OnHook == true && !player.Utilities.IsGrounded())
+        else if (player.Stats.OnHook == true && !player.Stats.IsGrounded)
         {
             UnityEngine.Object.Destroy(player.gameObject.GetComponent<HingeJoint2D>());
             player.Stats.OnHook = false;
@@ -102,10 +103,27 @@ public class PlayerActions
 
     }
 
-    public void CheckPlayerStatus()
+    public void CheckIfGrounded()
     {
-        if (player.Utilities.HitDeathZone())
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        Transform groundChecker = player.gameObject.GetComponentsInChildren<Transform>().FirstOrDefault(r => r.tag == "GroundChecker");
+        Collider2D col = Physics2D.OverlapCircle(groundChecker.position, player.Stats.CheckGroundRadius, player.Components.GroundLayer);
+
+        if (player.Stats.FallingFromHook == true && col != null)
+            player.Stats.FallingFromHook = false;
+
+        if (col != null)
+        {
+            player.Stats.IsGrounded = true;
+        }
+        else
+        {
+            if (player.Stats.IsGrounded)
+            {
+                player.Stats.LastTimeGrounded = Time.time;
+            }
+            player.Stats.IsGrounded = false;
+        }
     }
+
 
 }

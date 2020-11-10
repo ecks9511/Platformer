@@ -10,6 +10,14 @@ TagManager:
   - CanPress
   - CanPressButton
   - Button
+  - DeathZone
+  - NextLevelZone
+  - SpikeArea
+  - Spike
+  - Endpoint
+  - MovingPlatform
+  - Key
+  - GroundChecker
   layers:
   - Default
   - TransparentFX

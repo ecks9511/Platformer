@@ -40,19 +40,5 @@ public class PlayerUtilities
         }
     }
 
-    public bool IsGrounded()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(player.Components.Collider.bounds.center,player.Components.Collider.bounds.size,0,Vector2.down,0.1f,player.Components.GroundLayer);
-
-        if (player.Stats.FallingFromHook == true && hit.collider != null)
-            player.Stats.FallingFromHook = false;
-
-        return hit.collider != null;
-    }
-    public bool HitDeathZone()
-    {
-        RaycastHit2D hit = Physics2D.BoxCast(player.Components.Collider.bounds.center, player.Components.Collider.bounds.size, 0, Vector2.down, 0.1f, player.Components.DeathZoneLayer);
-        return hit.collider != null;
-    }
 
 }

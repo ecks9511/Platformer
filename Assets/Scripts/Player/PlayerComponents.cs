@@ -12,13 +12,9 @@ public class PlayerComponents
     private LayerMask groundLayer;
 
     [SerializeField]
-    private LayerMask deathZoneLayer;
-
-    [SerializeField]
     private Collider2D collider;
 
     public Rigidbody2D RigidBody { get => rigidBody;}
     public LayerMask GroundLayer { get => groundLayer;}
     public Collider2D Collider { get => collider;}
-    public LayerMask DeathZoneLayer { get => deathZoneLayer;}
 }
