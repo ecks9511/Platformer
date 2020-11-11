@@ -38,6 +38,13 @@ public class PlayerCollisions : MonoBehaviour
             //Let it fall
             spikeRb.isKinematic = false;
         }
+        else if (collision.gameObject.tag == "CrushBlockArea")
+        {
+            Debug.Log("Hit crush block area");
+            GameObject crushBlock = collision.gameObject;
+            MoveCrushBlock crushBlockScript = crushBlock.GetComponentInParent<MoveCrushBlock>();
+            crushBlockScript.canMove = true;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)

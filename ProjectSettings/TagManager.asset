@@ -18,6 +18,8 @@ TagManager:
   - MovingPlatform
   - Key
   - GroundChecker
+  - CrushBlock
+  - CrushBlockArea
   layers:
   - Default
   - TransparentFX

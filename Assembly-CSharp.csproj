@@ -69,8 +69,9 @@
     <Compile Include="Assets\Scripts\Player\PlayerReferences.cs" />
     <Compile Include="Assets\Scripts\Player\Commands\GrappleCommand.cs" />
     <Compile Include="Assets\Scripts\Player\Commands\JumpCommand.cs" />
-    <Compile Include="Assets\Scripts\Environment\Lock.cs" />
     <Compile Include="Assets\Scripts\Environment\MovePlatform.cs" />
+    <Compile Include="Assets\Scripts\Environment\Lock.cs" />
+    <Compile Include="Assets\Scripts\Environment\MoveCrushBlock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
