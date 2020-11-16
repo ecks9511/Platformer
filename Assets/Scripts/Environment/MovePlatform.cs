@@ -9,9 +9,7 @@ public class MovePlatform : MonoBehaviour
     public Transform endPoint1, endPoint2;
     public bool isHorizontal;
 
-    private bool inLoop;
-    private Vector2 direction;
-    private float dirX;
+    public bool inLoop;
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +22,9 @@ public class MovePlatform : MonoBehaviour
     {
         if (isHorizontal == true)
         {
-            if (transform.position.x > endPoint1.position.x)
+            if (transform.position.x < endPoint1.position.x)
                 inLoop = true;
-            if (transform.position.x < endPoint2.position.x)
+            if (transform.position.x > endPoint2.position.x)
                 inLoop = false;
 
             if (inLoop)

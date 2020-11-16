@@ -42,13 +42,15 @@ public class MoveCrushBlock : MonoBehaviour
         }
         else
         {
-            if (transform.position.y == endPoint1.position.y)
+            if (transform.position.y > endPoint1.position.y)
             {
+                transform.position = endPoint1.position;
                 canMove = false;
                 firstSide = false;
             }
-            else if (transform.position.y == endPoint2.position.y)
+            else if (transform.position.y < endPoint2.position.y)
             {
+                transform.position = endPoint2.position;
                 canMove = false;
                 firstSide = true;
             }

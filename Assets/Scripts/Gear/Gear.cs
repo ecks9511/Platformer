@@ -10,16 +10,15 @@ public class Gear : MonoBehaviour
     void Start()
     {
     }
-    static public void GenerateRope(Transform target, Player player)
+    static public void GenerateRope(Transform target, GameObject secondTarget, int numLinks)
     {
         //Load needed prefabs
         GameObject hookPrefab = Resources.Load("Prefabs/Tools/Rope") as GameObject;
         GameObject linkPrefab = Resources.Load("Prefabs/Tools/Link") as GameObject;
-        int numLinks = 25;
 
         //Distances between the two points
-        float yDiff = (target.position.y - player.transform.position.y) / numLinks;
-        float xDiff = (target.position.x - player.transform.position.x) / numLinks;
+        float yDiff = (target.position.y - secondTarget.transform.position.y) / numLinks;
+        float xDiff = (target.position.x - secondTarget.transform.position.x) / numLinks;
 
 
 
@@ -40,27 +39,29 @@ public class Gear : MonoBehaviour
             prevRb = link.GetComponent<Rigidbody2D>();
             curTarget = link.transform;
 
+            
             //If last cycle through
             if (i == numLinks - 1)
             {
                 //Do the last joint and connect player
-                joint = player.gameObject.AddComponent<HingeJoint2D>();
+                joint = secondTarget.gameObject.AddComponent<HingeJoint2D>();
                 joint.connectedBody = prevRb;
-                player.Stats.OnHook = true;
             }
         }
 
 
     }
-    static public void GrabExistingRope(Transform target, Player player)
+    static public void GrabExistingRope(Transform target, GameObject secondTarget, int numLinks)
     {
         //Get Rope object and destroy it
         Transform rope = target.transform.GetChild(0);
         UnityEngine.Object.Destroy(rope.gameObject);
 
         //Make a new rope to attach it to player
-        GenerateRope(target, player);
+        GenerateRope(target, secondTarget, numLinks);
 
 
     }
+
+
 }

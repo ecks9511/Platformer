@@ -52,6 +52,11 @@ public class PlayerStats
     [SerializeField]
     private float checkGroundRadius;
 
+    [SerializeField]
+    private bool doubleJump;
+
+
+
     public float SwingSpeed { get => swingSpeed; }
     public float WalkSpeed { get => walkSpeed; }
     public float FallMultiplier { get => fallMultiplier; set => fallMultiplier = value; }
@@ -64,4 +69,5 @@ public class PlayerStats
     public bool IsGrounded { get => isGrounded; set => isGrounded = value; }
     public float LastTimeGrounded { get => lastTimeGrounded; set => lastTimeGrounded = value; }
     public float CheckGroundRadius { get => checkGroundRadius;}
+    public bool DoubleJump { get => doubleJump; set => doubleJump = value; }
 }

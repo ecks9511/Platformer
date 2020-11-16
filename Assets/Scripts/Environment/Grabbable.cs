@@ -5,6 +5,7 @@ using UnityEngine;
 public class Grabbable : MonoBehaviour
 {
     public bool hookInstalled;
+    public GameObject connectedObject;
 
     public void Start()
     {

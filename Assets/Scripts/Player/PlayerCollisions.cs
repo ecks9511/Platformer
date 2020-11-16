@@ -14,7 +14,9 @@ public class PlayerCollisions : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Button")
+        var allTags = collision.gameObject.GetComponent<CustomTag>();
+
+        if (allTags != null && allTags.HasTag("Button"))
         {
             GameObject button = collision.gameObject;
             ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();
@@ -22,15 +24,15 @@ public class PlayerCollisions : MonoBehaviour
             sprite.enabled = false;
             buttonInfo.isPressed = true;
         }
-        else if (collision.gameObject.tag == "DeathZone")
+        else if (allTags != null && allTags.HasTag("DeathZone"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        else if (collision.gameObject.tag == "NextLevelZone")
+        else if (allTags != null && allTags.HasTag("NextLevelZone"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         }
-        else if (collision.gameObject.tag == "SpikeArea")
+        else if (allTags != null && allTags.HasTag("SpikeArea"))
         {
             GameObject spikeChild = collision.gameObject;
             Rigidbody2D spikeRb = spikeChild.transform.GetComponentInParent<Rigidbody2D>();
@@ -38,18 +40,29 @@ public class PlayerCollisions : MonoBehaviour
             //Let it fall
             spikeRb.isKinematic = false;
         }
-        else if (collision.gameObject.tag == "CrushBlockArea")
+        else if (allTags != null && allTags.HasTag("CrushBlockArea"))
         {
-            Debug.Log("Hit crush block area");
             GameObject crushBlock = collision.gameObject;
             MoveCrushBlock crushBlockScript = crushBlock.GetComponentInParent<MoveCrushBlock>();
             crushBlockScript.canMove = true;
+        }
+        else if (allTags != null && allTags.HasTag("Key"))
+        {
+            player.Stats.KeyNum++;
+            Destroy(collision.gameObject);
+        }
+        else if(allTags != null && allTags.HasTag("DoubleJump"))
+        {
+            player.Stats.DoubleJump = true;
+            Destroy(collision.gameObject);
         }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Button")
+        var allTags = collision.gameObject.GetComponent<CustomTag>();
+
+        if (allTags != null && allTags.HasTag("Button"))
         {
             GameObject button = collision.gameObject;
             ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();
@@ -58,28 +71,32 @@ public class PlayerCollisions : MonoBehaviour
             buttonInfo.isPressed = false;
 
         }
-        else if (collision.gameObject.tag == "Key")
-        {
-            player.Stats.KeyNum++;
-            Destroy(collision.gameObject);
-        }
+
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.tag == "Spike")
+        var allTags = collision.gameObject.GetComponent<CustomTag>();
+
+        if (allTags != null && allTags.HasTag("Spike"))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
-        else if (collision.gameObject.tag == "MovingPlatform")
+        else if (allTags != null && allTags.HasTag("MovingPlatform"))
         {
             player.transform.parent = collision.gameObject.transform;
+        }
+        else if (allTags != null && allTags.HasTag("CrushBlock"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 
     private void OnCollisionExit2D (Collision2D collision)
     {
-        if (collision.gameObject.tag == "MovingPlatform")
+        var allTags = collision.gameObject.GetComponent<CustomTag>();
+
+        if (allTags != null && allTags.HasTag("MovingPlatform"))
         {
             player.transform.parent = null;
 

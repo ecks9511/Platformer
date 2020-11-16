@@ -55,9 +55,12 @@
     <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\Gear\MouseTracker.cs" />
     <Compile Include="Assets\Scripts\Player\Player.cs" />
+    <Compile Include="Assets\Scripts\CustomTag.cs" />
     <Compile Include="Assets\Scripts\Environment\Grabbable.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerUtilities.cs" />
+    <Compile Include="Assets\Scripts\Player\Commands\SecondGrappleCommand.cs" />
     <Compile Include="Assets\Scripts\Player\Commands\Command.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerActions.cs" />
     <Compile Include="Assets\Scripts\Gear\Gear.cs" />
@@ -66,12 +69,14 @@
     <Compile Include="Assets\Scripts\Player\PlayerCollisions.cs" />
     <Compile Include="Assets\Scripts\Environment\CanPressButton.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerStats.cs" />
+    <Compile Include="Assets\Scripts\Environment\MoveCrushBlock.cs" />
     <Compile Include="Assets\Scripts\Player\PlayerReferences.cs" />
+    <Compile Include="Assets\Scripts\Environment\GrabbableBalloon.cs" />
     <Compile Include="Assets\Scripts\Player\Commands\GrappleCommand.cs" />
     <Compile Include="Assets\Scripts\Player\Commands\JumpCommand.cs" />
     <Compile Include="Assets\Scripts\Environment\MovePlatform.cs" />
     <Compile Include="Assets\Scripts\Environment\Lock.cs" />
-    <Compile Include="Assets\Scripts\Environment\MoveCrushBlock.cs" />
+    <Compile Include="Assets\Scripts\Environment\Breakable.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

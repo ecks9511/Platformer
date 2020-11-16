@@ -141,9 +141,10 @@ GameObject:
   - component: {fileID: 857565953560216287}
   - component: {fileID: 857565953560216097}
   - component: {fileID: 920583554}
+  - component: {fileID: -8436431118557726263}
   m_Layer: 0
   m_Name: Rope
-  m_TagString: RopeStart
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -247,3 +248,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8bb1757f21a5d94887c8c5e0cb75449, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-8436431118557726263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 857565953560216286}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 698391f34bd8a1140bb22b05efca5a6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tags:
+  - RopeStart
+  - PlayerCreated

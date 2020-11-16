@@ -11,7 +11,9 @@ public class CanPressButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Button")
+        var allTags = collision.gameObject.GetComponent<CustomTag>();
+
+        if (allTags != null && allTags.HasTag("Button"))
         {
             GameObject button = collision.gameObject;
             ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();
@@ -22,7 +24,9 @@ public class CanPressButton : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Button")
+        var allTags = collision.gameObject.GetComponent<CustomTag>();
+
+        if (allTags != null && allTags.HasTag("Button"))
         {
             GameObject button = collision.gameObject;
             ButtonInfo buttonInfo = button.GetComponent<ButtonInfo>();

@@ -20,6 +20,15 @@ TagManager:
   - GroundChecker
   - CrushBlock
   - CrushBlockArea
+  - DoubleJump
+  - Balloon
+  - Fan
+  - Box
+  - Lock
+  - PlayerCreated
+  - MouseTracker
+  - BigBoxBreakable
+  - CanBreakOther
   layers:
   - Default
   - TransparentFX
@@ -32,7 +41,7 @@ TagManager:
   - Ground
   - Player
   - DeathZone
-  - 
+  - Balloon
   - 
   - 
   - 

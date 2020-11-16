@@ -17,6 +17,7 @@ public class PlayerUtilities
         commands.Add(new JumpCommand(player,KeyCode.UpArrow));
         commands.Add(new JumpCommand(player, KeyCode.Space));
         commands.Add(new GrappleCommand(player, KeyCode.Mouse0));
+        commands.Add(new SecondGrappleCommand(player, KeyCode.Mouse1));
     }
     public void HandleInput()
     {
